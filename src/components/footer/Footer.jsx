@@ -7,8 +7,7 @@ const Footer = () => {
 
         <a href="">abc</a>
       </footer>
-      <a href="">abc123</a>
-      <button className={style.btn}>Follow</button>
+
     </>
   ) 
 }

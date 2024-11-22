@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
-import Course from './components/Course';
-import Foooter from './components/footer/Footer';
+import Footer from './components/footer/Footer';  
 import style from './App.module.scss';
+import ProductList from './components/Produclist/ProductList';
 
-function Welcome(props) {
-  return <h1 style={{backgroundColor: "red", color: "white"}}>Hello {props.name}</h1>
+function Welcome (props) {
+  const [state, setState] = useState(false); 
+
+
+  function handleClick(e) {
+    setState(!state); 
+  }
+  console.log(state);
+  return (
+    <div className='wrap'>
+      <button onClick={handleClick} className='bg-red-300 text-sm p-2'>{state ? `Ẩn danh sách` : `Hiện danh sách`}</button>
+      <div className="flex"></div>
+      {state && <ProductList />} 
+    </div>
+  );
 }
 
 const App = () => {
   return (
     <>
-      <Header/>
-      <button className={style.btn}>Ahhih</button>
-      <Welcome name="An" />
-      <Foooter/>
+      <Header />
+      <Welcome />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
