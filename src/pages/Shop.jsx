@@ -50,6 +50,7 @@ const Shop = () => {
     );
   }
 
+
   function searchProduct(e) {
     const value = e.target.value.toLowerCase();
     setIsSearch(!!value); 
@@ -98,6 +99,7 @@ const Shop = () => {
           id=""
           onChange={(e) => {
             setLimit(Number(e.target.value));
+            setCurPage(1);
           }}
           className="border border-black "
         >
