@@ -55,7 +55,7 @@ const Shop = () => {
     setIsSearch(!!value); 
     setValueSearch(value);
     setCurPage(1);
-    setSkip(0)
+    setSkip(0);
     if (value) {
       fetch(`${URL}/search?q=${value}`)
         .then((res) => res.json())
@@ -123,17 +123,19 @@ const Shop = () => {
         <ProductList /> 
       </div>
 
-      <div className="flex justify-center mt-5 items-center gap-5">
-        <span onClick={prevProduct} className="border bg-[#eee]">
-          <i className="ri-arrow-drop-left-line text-4xl cursor-pointer"></i>
-        </span>
-
-        <Page />
-
-        <span onClick={nextProduct} className="border bg-[#eee]">
-          <i className="ri-arrow-drop-right-line text-4xl cursor-pointer"></i>
-        </span>
-      </div>
+      {data.length > 0 && (
+          <div className="flex justify-center mt-5 items-center gap-5">
+          <span onClick={prevProduct} className="border bg-[#eee]">
+            <i className="ri-arrow-drop-left-line text-4xl cursor-pointer"></i>
+          </span>
+  
+          <Page />
+  
+          <span onClick={nextProduct} className="border bg-[#eee]">
+            <i className="ri-arrow-drop-right-line text-4xl cursor-pointer"></i>
+          </span>
+        </div>
+      )}
     </section>
   );
 };
