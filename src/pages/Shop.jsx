@@ -18,12 +18,11 @@ const Shop = () => {
       setData(datas.products);
       setTotal(datas.total);
     };
-    console.log(valueSearch);
 
     if (!isSearch) {
       fetchData();
     }
-  }, [limit, skip, valueSearch]);
+  }, [limit, skip]);
 
   function prevProduct() {
     if (skip > 0) {
@@ -54,8 +53,9 @@ const Shop = () => {
   function searchProduct(e) {
     const value = e.target.value.toLowerCase();
     setIsSearch(!!value); 
-    setValueSearch(value)
-    setCurPage(1)
+    setValueSearch(value);
+    setCurPage(1);
+    setSkip(0)
     if (value) {
       fetch(`${URL}/search?q=${value}`)
         .then((res) => res.json())
