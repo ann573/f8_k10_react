@@ -3,9 +3,7 @@ import style from  './footer.module.scss'
 const Footer = () => {
   return (
     <>
-      <footer>Foooter
-
-        <a href="">abc</a>
+      <footer className='mt-5 text-center'>Foooter
       </footer>
 
     </>

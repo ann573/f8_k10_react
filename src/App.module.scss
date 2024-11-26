@@ -1,7 +1,10 @@
 .btn
 {
   background-color: red;
-  color: white;
+  color: white; 
+  padding-inline: 1rem;
+  padding-block: .5rem;
+  border-radius: 16px;
 }
 .wrap{
   margin-top: 50px;
