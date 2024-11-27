@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const URL = "https://dummyjson.com/products";
 
-const Shop = () => {
+const ShopPage = () => {
   const [data, setData] = useState([]);
   const [limit, setLimit] = useState(10);
   const [skip, setSkip] = useState(0);
   const [total, setTotal] = useState(0);
   const [curPage, setCurPage] = useState(1);
   const [isSearch, setIsSearch] = useState(false);
-  const [valueSearch, setValueSearch] = useState('')
+  const [valueSearch, setValueSearch] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +30,6 @@ const Shop = () => {
       setSkip(skip - limit);
       setCurPage(curPage - 1);
     }
-
   }
 
   function nextProduct() {
@@ -49,10 +49,9 @@ const Shop = () => {
     );
   }
 
-
   function searchProduct(e) {
     const value = e.target.value.toLowerCase();
-    setIsSearch(!!value); 
+    setIsSearch(!!value);
     setValueSearch(value);
     setCurPage(1);
     setSkip(0);
@@ -75,18 +74,23 @@ const Shop = () => {
   }
 
   const ProductList = () => {
-    if (data.length === 0) return (<h1 className="text-3xl font-bold">Không có sản phẩm nào</h1>)
+    if (data.length === 0)
+      return <h1 className="text-3xl font-bold">Không có sản phẩm nào</h1>;
     let newData = data;
-    if(isSearch) {
-        newData = data.slice((curPage-1)*limit,curPage*limit);
-    } 
+    if (isSearch) {
+      newData = data.slice((curPage - 1) * limit, curPage * limit);
+    }
     return newData.map((item) => {
       return (
-        <div key={item.id} className="border">
-          <img src={item.thumbnail} alt={item.title} />
-          <h3 className="font-semibold text-xl">{item.title}</h3>
-          <p className="text-red-500">Giá: {item.price}</p>
-        </div>
+        <Link to={`/products/${item.id}`}>
+          <div key={item.id} className="border">
+            <img src={item.thumbnail} alt={item.title} />
+            <h3 className="font-semibold text-xl hover:text-red-500 cursor-pointer">
+              {item.title}
+            </h3>
+            <p className="text-red-500">Giá: {item.price}</p>
+          </div>
+        </Link>
       );
     });
   };
@@ -120,17 +124,17 @@ const Shop = () => {
       </div>
 
       <div className="grid grid-cols-5 gap-5">
-        <ProductList /> 
+        <ProductList />
       </div>
 
       {data.length > 0 && (
-          <div className="flex justify-center mt-5 items-center gap-5">
+        <div className="flex justify-center mt-5 items-center gap-5">
           <span onClick={prevProduct} className="border bg-[#eee]">
             <i className="ri-arrow-drop-left-line text-4xl cursor-pointer"></i>
           </span>
-  
+
           <Page />
-  
+
           <span onClick={nextProduct} className="border bg-[#eee]">
             <i className="ri-arrow-drop-right-line text-4xl cursor-pointer"></i>
           </span>
@@ -140,4 +144,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default ShopPage;
