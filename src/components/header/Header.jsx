@@ -1,10 +1,10 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useLocation} from 'react-router-dom'
 
 function Header() {
   const location = useLocation();
   const isAdminPage = location.pathname === "/admin";
-  
+
   return (  
     <>
       <header className='bg-red-500 mb-5'>
