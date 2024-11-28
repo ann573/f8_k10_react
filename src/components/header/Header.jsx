@@ -4,7 +4,7 @@ import {NavLink, useLocation} from 'react-router-dom'
 function Header() {
   const location = useLocation();
   const isAdminPage = location.pathname.includes("/admin") ;
-  console.log(isAdminPage);
+
   if (isAdminPage) {
     return (
       <>

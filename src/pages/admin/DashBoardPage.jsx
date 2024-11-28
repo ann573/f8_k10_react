@@ -1,6 +1,6 @@
 import React ,{useState, useEffect} from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 
 const DashBoardPage = ({ data }) => {
   const location = useLocation();
@@ -25,9 +25,11 @@ const DashBoardPage = ({ data }) => {
             <button className="px-3 py-1 text-white bg-red-500 rounded-lg" onClick={()=>deleteProduct(item.id)}>
               Remove
             </button>
+            <Link to={`/admin/update_product/${item.id}`}>
             <button className="px-3 py-1 text-black bg-yellow-500 rounded-lg">
               Update
             </button>
+            </Link>
           </td>
         </tr>
       </>
@@ -85,6 +87,9 @@ const DashBoardPage = ({ data }) => {
         </div>
         <div className="col-span-4">
           {isAdminPage ? (<>
+            <Link to='/admin/add_product'>
+              <button  className="bg-green-700 text-white px-5 py-2 rounded-xl mb-3">Add New Product</button>
+            </Link>
             <table className="w-full table-auto border-collapse border border-slate-500">
               <thead>
                 <tr>
