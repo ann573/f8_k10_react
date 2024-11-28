@@ -1908,64 +1908,6 @@
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Potatoes/thumbnail.png"
     },
     {
-      "id": "36",
-      "title": "Protein Powder",
-      "description": "Nutrient-packed protein powder, ideal for supplementing your diet with essential proteins.",
-      "category": "groceries",
-      "price": 19.99,
-      "discountPercentage": 1.58,
-      "rating": 3.91,
-      "stock": 65,
-      "tags": [
-        "health supplements"
-      ],
-      "sku": "BT2QOWKZ",
-      "weight": 2,
-      "dimensions": {
-        "width": 5.62,
-        "height": 7.88,
-        "depth": 23.48
-      },
-      "warrantyInformation": "1 year warranty",
-      "shippingInformation": "Ships in 1-2 business days",
-      "availabilityStatus": "In Stock",
-      "reviews": [
-        {
-          "rating": 1,
-          "comment": "Very dissatisfied!",
-          "date": "2024-05-23T08:56:21.621Z",
-          "reviewerName": "Logan Lawson",
-          "reviewerEmail": "logan.lawson@x.dummyjson.com"
-        },
-        {
-          "rating": 3,
-          "comment": "Poor quality!",
-          "date": "2024-05-23T08:56:21.621Z",
-          "reviewerName": "Julian James",
-          "reviewerEmail": "julian.james@x.dummyjson.com"
-        },
-        {
-          "rating": 1,
-          "comment": "Very unhappy with my purchase!",
-          "date": "2024-05-23T08:56:21.621Z",
-          "reviewerName": "Hazel Evans",
-          "reviewerEmail": "hazel.evans@x.dummyjson.com"
-        }
-      ],
-      "returnPolicy": "No return policy",
-      "minimumOrderQuantity": 39,
-      "meta": {
-        "createdAt": "2024-05-23T08:56:21.621Z",
-        "updatedAt": "2024-05-23T08:56:21.621Z",
-        "barcode": "2858973742684",
-        "qrCode": "https://assets.dummyjson.com/public/qr-code.png"
-      },
-      "images": [
-        "https://cdn.dummyjson.com/products/images/groceries/Protein%20Powder/1.png"
-      ],
-      "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Protein%20Powder/thumbnail.png"
-    },
-    {
       "id": "37",
       "title": "Red Onions",
       "description": "Flavorful and aromatic red onions, perfect for adding depth to your savory dishes.",

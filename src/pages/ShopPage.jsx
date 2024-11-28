@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 const URL = "https://dummyjson.com/products";
 
-const ShopPage = () => {
+const ShopPage = ({productData}) => {
+  console.log(productData);
   const [data, setData] = useState([]);
   const [limit, setLimit] = useState(10);
   const [skip, setSkip] = useState(0);
