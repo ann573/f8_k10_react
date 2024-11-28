@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const URL = "https://dummyjson.com/products";
 
 const ShopPage = ({productData}) => {
-  console.log(productData);
   const [data, setData] = useState([]);
   const [limit, setLimit] = useState(10);
   const [skip, setSkip] = useState(0);
@@ -14,11 +13,9 @@ const ShopPage = ({productData}) => {
   const [valueSearch, setValueSearch] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(`${URL}?limit=${limit}&skip=${skip}`);
-      const datas = await res.json();
-      setData(datas.products);
-      setTotal(datas.total);
+    const fetchData = () => {
+      setData(productData);
+      setTotal(productData.length);
     };
 
     if (!isSearch) {
@@ -65,12 +62,8 @@ const ShopPage = ({productData}) => {
         });
     } else {
       setIsSearch(false);
-      fetch(`${URL}?limit=${limit}&skip=${skip}`)
-        .then((res) => res.json())
-        .then((datas) => {
-          setData(datas.products);
-          setTotal(datas.total);
-        });
+      setData(productData);
+      setTotal(productData.length);
     }
   }
 
@@ -81,10 +74,10 @@ const ShopPage = ({productData}) => {
     if (isSearch) {
       newData = data.slice((curPage - 1) * limit, curPage * limit);
     }
-    return newData.map((item) => {
+    return newData.slice(limit *(curPage-1) , limit*curPage).map((item,index) => {
       return (
-        <Link to={`/products/${item.id}`}>
-          <div key={item.id} className="border">
+        <Link to={`/products/${item.id}`} key={index}>
+          <div className="border">
             <img src={item.thumbnail} alt={item.title} />
             <h3 className="font-semibold text-xl hover:text-red-500 cursor-pointer">
               {item.title}
