@@ -3,8 +3,25 @@ import {NavLink, useLocation} from 'react-router-dom'
 
 function Header() {
   const location = useLocation();
-  const isAdminPage = location.pathname === "/admin";
+  const isAdminPage = location.pathname.includes("/admin") ;
+  console.log(isAdminPage);
+  if (isAdminPage) {
+    return (
+      <>
+        <header className='bg-red-500 mb-5'>
+          <ul className='flex p-5 gap-10'>
+            <li>
+              <NavLink to="/">Home UI</NavLink>
+            </li>
+            <li>
+              <NavLink to="/admin">DashBoard Page</NavLink>
+            </li>
 
+          </ul>
+        </header>
+      </>
+    )
+  }
   return (  
     <>
       <header className='bg-red-500 mb-5'>

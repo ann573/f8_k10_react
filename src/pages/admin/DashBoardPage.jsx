@@ -76,7 +76,7 @@ const DashBoardPage = ({ data }) => {
         <div>
           <ul>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/admin/category">Categories</NavLink>
             </li>
             <li>
               <NavLink to="/admin/products">Products</NavLink>

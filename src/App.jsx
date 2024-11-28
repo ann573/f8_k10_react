@@ -11,6 +11,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import DashBoardPage from "./pages/admin/DashBoardPage";
 import ProductList from "./pages/admin/ProductList";
 import { useEffect, useState } from "react";
+import Categories from './pages/admin/Categories';
 
 const App = () => {
   const [dataProduct, setDataProduct] = useState([]);
@@ -38,6 +39,7 @@ const App = () => {
 
         <Route path="/admin" element={<DashBoardPage data={dataProduct} />}>
           <Route path="/admin/products" element={<ProductList />} />
+          <Route path="/admin/category" element={<Categories />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
