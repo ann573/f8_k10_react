@@ -2,13 +2,17 @@ import React ,{useState, useEffect} from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { NavLink,Link } from "react-router-dom";
 
-const DashBoardPage = ({ data }) => {
+const DashBoardPage = ({ data,fetchProducts }) => {
   const location = useLocation();
   const isAdminPage = location.pathname === "/admin";
 
   const [curPage, setCurPage] = useState(0)
   const [products, setProducts] = useState([]);
   const totalPage = Math.ceil(products.length/20)
+
+  if (curPage > 0 && products.length === curPage * 20) {
+    setCurPage(curPage - 1);
+  }
 
   useEffect(() => {
     setProducts(data);
@@ -48,6 +52,7 @@ const DashBoardPage = ({ data }) => {
         })
   
         setProducts(prevProducts => prevProducts.filter(product => product.id !== id));
+        fetchProducts();
       } catch (error) {
         console.log(error);
       }

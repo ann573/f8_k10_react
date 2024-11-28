@@ -18,16 +18,18 @@ import UpdateProduct from './pages/admin/UpdateProduct';
 const App = () => {
   const [dataProduct, setDataProduct] = useState([]);
 
+  const fetchProducts = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/products");
+      const data = await res.json();
+      setDataProduct(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await fetch("http://localhost:3000/products");
-        const data = await res.json();
-        setDataProduct(data);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    fetchProducts();
   }, []);
 
   return (
@@ -39,7 +41,7 @@ const App = () => {
         <Route path="/service" element={<ServicePage />} />
         <Route path="/products/:id" element={<ProductDetailPage />} />
 
-        <Route path="/admin" element={<DashBoardPage data={dataProduct} />}>
+        <Route path="/admin" element={<DashBoardPage data={dataProduct} fetchProducts={fetchProducts}/>}>
           <Route path="/admin/products" element={<ProductList />} />
           <Route path="/admin/category" element={<Categories />} />
           <Route path="/admin/add_product" element={<AddProduct />} />
