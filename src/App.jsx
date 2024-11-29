@@ -11,26 +11,38 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import DashBoardPage from "./pages/admin/DashBoardPage";
 import ProductList from "./pages/admin/ProductList";
 import { useEffect, useState } from "react";
-import Categories from './pages/admin/Categories';
-import AddProduct from './pages/admin/AddProduct';
-import UpdateProduct from './pages/admin/UpdateProduct';
+import Categories from "./pages/admin/Categories";
+import AddProduct from "./pages/admin/AddProduct";
+import UpdateProduct from "./pages/admin/UpdateProduct";
+import { getAll, deleteByParam } from './axios/index';
 
 const App = () => {
   const [dataProduct, setDataProduct] = useState([]);
+  const [limit, setLimit] = useState(0);
 
-  const fetchProducts = async () => {
-    try {
-      const res = await fetch("http://localhost:3000/products");
-      const data = await res.json();
-      setDataProduct(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  async function fetchProducts() {
+      const data = await getAll("products")
+      setDataProduct(data)
+  } 
   useEffect(() => {
-    fetchProducts();
+    (async () => {
+      const data = await getAll("products")
+      setDataProduct(data)
+    })()
   }, []);
+
+  const onRemove = async (id) =>{
+    let result =  confirm("Bạn có chắc không")
+    if (result) {
+      try {
+        const res = await deleteByParam("products", id)
+        
+        res.status === 200 && fetchProducts()
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 
   return (
     <>
@@ -41,11 +53,24 @@ const App = () => {
         <Route path="/service" element={<ServicePage />} />
         <Route path="/products/:id" element={<ProductDetailPage />} />
 
-        <Route path="/admin" element={<DashBoardPage data={dataProduct} fetchProducts={fetchProducts}/>}>
+        <Route
+          path="/admin"
+          element={
+            <DashBoardPage
+              data={dataProduct}
+              fetchProducts={fetchProducts}
+              setLimit={setLimit}
+              onRemove={onRemove}
+            />
+          }
+        >
           <Route path="/admin/products" element={<ProductList />} />
           <Route path="/admin/category" element={<Categories />} />
-          <Route path="/admin/add_product" element={<AddProduct />} />
-          <Route path="/admin/update_product/:id" element={<UpdateProduct data={dataProduct} />} />
+          <Route path="/admin/add_product" element={<AddProduct fetchProducts={fetchProducts} />} />
+          <Route
+            path="/admin/update_product/:id"
+            element={<UpdateProduct data={dataProduct} />}
+          />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

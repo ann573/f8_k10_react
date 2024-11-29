@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const URL = "https://dummyjson.com/products";
-
 const ShopPage = ({productData}) => {
+  
   const [data, setData] = useState([]);
   const [limit, setLimit] = useState(10);
   const [skip, setSkip] = useState(0);
@@ -11,6 +10,11 @@ const ShopPage = ({productData}) => {
   const [curPage, setCurPage] = useState(1);
   const [isSearch, setIsSearch] = useState(false);
   const [valueSearch, setValueSearch] = useState("");
+  
+  useEffect(()=>{
+    setData(productData)
+    console.log(data);
+  },[])
 
   useEffect(() => {
     const fetchData = () => {
