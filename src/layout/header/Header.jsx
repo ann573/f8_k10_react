@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {NavLink, useLocation} from 'react-router-dom'
+import { AuthContext } from './../../contexts/AuthContext';
 
 function Header() {
   const location = useLocation();
   const isAdminPage = location.pathname.includes("/admin") ;
 
+  const user = useContext(AuthContext)
   if (isAdminPage) {
     return (
       <>
@@ -37,6 +39,9 @@ function Header() {
           </li>
           <li>
             <NavLink to="/admin">Trang Admin</NavLink>
+          </li>
+          <li>
+            {user.email ? <NavLink to="/register" className="bg-green-500 p-1 rounded-lg">Log out</NavLink> : <NavLink to="/login" className="bg-green-500 p-1 rounded-lg">Login</NavLink>}
           </li>
           
         </ul>

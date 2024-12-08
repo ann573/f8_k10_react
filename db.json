@@ -10510,7 +10510,25 @@
       "desc": "123"
     }
   ],
-  "total": 194,
-  "skip": 0,
-  "limit": 194
+  "users": [
+    {
+      "email": "ann3@imail.edu.vn",
+      "password": "$2a$10$bn1K94DqrtyLchF9jxQGReQZ3LqNQxI9o.0yzBaYYFM0FD9jBRgyi",
+      "confirmPassword": "22222222",
+      "id": 1
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$.EhPRh25sjikzd2Z90lT1.Y.GyCVSWWcdOgpSTpCIFwGKleQIJrFa",
+      "confirmPassword": "123123",
+      "id": 2,
+      "role": "admin"
+    },
+    {
+      "email": "ann@imail.edu.vn",
+      "password": "$2a$10$KPZ50caMwTj0u9Dsux1.6eTbffmWX2370cteyfGeDguQZVLXCx48u",
+      "confirmPassword": "123123",
+      "id": 3
+    }
+  ]
 }

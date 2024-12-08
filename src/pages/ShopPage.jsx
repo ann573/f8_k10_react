@@ -3,18 +3,24 @@ import { Link } from "react-router-dom";
 
 const ShopPage = ({productData}) => {
   
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(productData);
   const [limit, setLimit] = useState(10);
   const [skip, setSkip] = useState(0);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(productData.length);
   const [curPage, setCurPage] = useState(1);
   const [isSearch, setIsSearch] = useState(false);
   const [valueSearch, setValueSearch] = useState("");
   
   useEffect(()=>{
     setData(productData)
-    console.log(data);
   },[])
+
+  useEffect(() => {
+    if (productData && productData.length > 0) {
+      setData(productData);
+      setTotal(productData.length);
+    }
+  }, [productData]);
 
   useEffect(() => {
     const fetchData = () => {
@@ -58,7 +64,7 @@ const ShopPage = ({productData}) => {
     setCurPage(1);
     setSkip(0);
     if (value) {
-      fetch(`${URL}/search?q=${value}`)
+      fetch(`https://json-server-4ogm.onrender.com/search?q=${value}`)
         .then((res) => res.json())
         .then((datas) => {
           setData(datas.products);
@@ -72,13 +78,13 @@ const ShopPage = ({productData}) => {
   }
 
   const ProductList = () => {
-    if (data.length === 0)
+    if (productData.length === 0)
       return <h1 className="text-3xl font-bold">Không có sản phẩm nào</h1>;
-    let newData = data;
+    let newData = productData;
     if (isSearch) {
-      newData = data.slice((curPage - 1) * limit, curPage * limit);
+      newData = productData.slice((curPage - 1) * limit, curPage * limit);
     }
-    return newData.slice(limit *(curPage-1) , limit*curPage).map((item,index) => {
+    return productData.slice(limit *(curPage-1) , limit*curPage).map((item,index) => {
       return (
         <Link to={`/products/${item.id}`} key={index}>
           <div className="border">
@@ -125,7 +131,7 @@ const ShopPage = ({productData}) => {
         <ProductList />
       </div>
 
-      {data.length > 0 && (
+      {productData.length > 0 && (
         <div className="flex justify-center mt-5 items-center gap-5">
           <span onClick={prevProduct} className="border bg-[#eee]">
             <i className="ri-arrow-drop-left-line text-4xl cursor-pointer"></i>

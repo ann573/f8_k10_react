@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useParams } from 'react-router-dom';
 
 const UpdateProduct = ({data}) => {
@@ -6,7 +6,14 @@ const UpdateProduct = ({data}) => {
   const { id } = useParams();
 
   const findProduct = data.find((item)=> item.id == id)
+  const [valueForm, setValueForm] = useState({});
 
+  function handleChange(e){
+    setValueForm((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  }
   if(findProduct){
     return (
       <section className='flex justify-center'>
@@ -14,15 +21,15 @@ const UpdateProduct = ({data}) => {
           <h3 className='text-4xl font-bold mb-3'>Update product</h3>
           <div className='flex flex-col gap-1 mb-5'>
             <label htmlFor="title">Title</label>
-            <input type="text" id='title' value={findProduct.title} className='w-full border rounded-sm border-[#363636] py-2 pl-3'name='title' />
+            <input type="text" id='title' value={findProduct.title} className='w-full border rounded-sm border-[#363636] py-2 pl-3' name='title' onChange={handleChange} />
           </div>
           <div className='flex flex-col gap-1 mb-5'>
             <label htmlFor="price">Price</label>
-            <input type="text" id='price'value={findProduct.price} className='w-full border rounded-sm border-[#363636] py-2 pl-3'name='price' />
+            <input type="text" id='price' value={findProduct.price} className='w-full border rounded-sm border-[#363636] py-2 pl-3'name='price' onChange={handleChange} />
           </div>
           <div className='flex flex-col gap-1 mb-5'>
             <label htmlFor="description">Description</label>
-            <textarea type="text" name='desc' value={findProduct.description} rows="10" className='w-full border rounded-sm border-[#363636] py-2 px-3 resize-none' id='description'>
+            <textarea type="text" name='desc' value={findProduct.description} rows="10" className='w-full border rounded-sm border-[#363636] py-2 px-3 resize-none' id='description' onChange={handleChange}>
             </textarea>
           </div>
           <button className='bg-blue-600 text-white w-full py-2'>Update Product</button>
