@@ -1,48 +1,26 @@
-import { useContext } from "react";
-import ProductProvider, { ProductContext } from "./contexts/ProductContext";
+import ProductProvider from "./contexts/ProductContext";
 
 import { Route, Routes } from "react-router-dom";
 import AuthProvider from "./contexts/AuthContext";
-import Header from './layout/header/Header';
+import Header from "./layout/header/Header";
+import LayoutAdmin from "./layout/LayoutAdmin";
+import DashBoardPage from "./pages/admin/DashBoardPage";
+import ProductList from "./pages/admin/ProductList";
 import LoginPage from "./pages/LoginPage";
-import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/RegisterPage";
-import DashBoardPage from './pages/admin/DashBoardPage';
-import LayoutAdmin from './layout/LayoutAdmin';
-import ProductList from './pages/admin/ProductList';
+import { useReducer, useEffect } from "react";
+import { getAll } from "./axios/crudService";
+import { productReducer, initialState } from "../reducer/produtcReducer";
+import useProducts from './../hooks/useProducts';
 
-const ComponentA = () => {
-  return (
-    <>
-      <h1>Component A</h1>
-      <ComponentB />
-    </>
-  );
-};
-
-const ComponentB = () => {
-  return (
-    <>
-      <h1>Component B</h1>
-      <ComponentC />
-    </>
-  );
-};
-
-const ComponentC = () => {
-  const value = useContext(ProductContext);
-  console.log(value);
-  return (
-    <>
-      <h1>Component C</h1>
-    </>
-  );
-};
 
 const App = () => {
+  const {products} = useProducts()
   return (
     <>
-      <AuthProvider>
+      <h1>Hi</h1>
+      {/* <AuthProvider>
         <Header/>
         <Routes>
 
@@ -58,7 +36,7 @@ const App = () => {
             <Route path="products" element={<ProductList/>}/>
           </Routes>
         </ProductProvider>
-      </AuthProvider>
+      </AuthProvider> */}
     </>
   );
 };
