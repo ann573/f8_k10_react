@@ -34,11 +34,14 @@ const ProductForm = () => {
     console.log( data);
     if (id){
       dispatch(updateNewProduct({data, id}))
+      nav("/")
     }else {
       dispatch(createProduct(data))
+      reset()
+      if (!error && confirm("Bạn có muốn chuyển trang không")) nav("/")
     }
 
-    if (!error) nav("/")
+    
   };
   return (
     <>
