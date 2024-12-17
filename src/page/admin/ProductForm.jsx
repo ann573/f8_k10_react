@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -38,7 +39,8 @@ const ProductForm = () => {
     }else {
       dispatch(createProduct(data))
       reset()
-      if (!error && confirm("Bạn có muốn chuyển trang không")) nav("/")
+      if (error) toast(error)
+      else if (!error && confirm("Bạn có muốn chuyển trang không")) nav("/")
     }
 
     
@@ -89,6 +91,7 @@ const ProductForm = () => {
           <button className="w-full bg-green-500 py-1 rounded-lg text-white">Submit</button>
         </div>
       </form>
+      <ToastContainer />
     </>
   );
 };

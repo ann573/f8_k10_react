@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import ProductTable from './page/admin/ProductTable';
 import ProductForm from './page/admin/ProductForm';
+import 'react-toastify/dist/ReactToastify.css';
+
 const App = () => {
 
   return (

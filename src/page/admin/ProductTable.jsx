@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts, removeOneProduct } from "./../../features/products/productAction";
@@ -17,7 +18,9 @@ const ProductTable = () => {
     if (confirm("Bạn có chắc muốn xóa không")) dispatch(removeOneProduct(id))
   }
 
-  if (error) return <p>{error}</p>;
+  if (error){
+    return <p>404 NOT FOUND</p>
+  };
   return (
     <>
       <header className="bg-blue-500 text-center text-white py-3">HeaderAdmin</header>

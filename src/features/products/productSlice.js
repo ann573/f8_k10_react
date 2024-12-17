@@ -26,14 +26,14 @@ const productSlice = createSlice({
       })
       .addCase(fetchProducts.rejected, setError)
 
-      .addCase(createProduct.pending, setLoading)
+      // .addCase(createProduct.pending, setLoading)
       .addCase(createProduct.fulfilled, (state, action) => {
         state.loading = false;
         state.products.push(action.payload);
       })
       .addCase(createProduct.rejected, setError)
 
-      .addCase(updateNewProduct.pending, setLoading)
+      // .addCase(updateNewProduct.pending, setLoading)
       .addCase(updateNewProduct.fulfilled, (state, action) => {
         state.loading = false;
         const index = state.products.findIndex((item) => item.id === action.payload.id);
@@ -43,7 +43,7 @@ const productSlice = createSlice({
       })
       .addCase(updateNewProduct.rejected, setError)
 
-      .addCase(removeOneProduct.pending, setLoading)
+      // .addCase(removeOneProduct.pending, setLoading)
       .addCase(removeOneProduct.fulfilled, (state, action) => {
         state.loading = false;
         state.products = state.products.filter((item) => item.id !== action.payload);
